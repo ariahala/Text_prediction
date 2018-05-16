@@ -84,7 +84,9 @@ train_op = tf.train.RMSPropOptimizer(learning_rate).minimize(loss)
 next_char_prediction = tf.nn.softmax(prediction[-1])
 
 # training
-sess = tf.Session()
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
 
 sess.run(tf.global_variables_initializer())
 
